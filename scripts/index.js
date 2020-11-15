@@ -7,11 +7,11 @@ let descriptionField = document.querySelector('.popup__field_description');
 let name = document.querySelector('.profile__name');
 let description = document.querySelector('.profile__description');
 
-nameField.value = name.textContent;
-descriptionField.value = description.textContent;
 
 function showPopup() {
   popup.classList.add('popup_opened');
+  nameField.value = name.textContent;
+  descriptionField.value = description.textContent;
 }
 editButton.addEventListener('click', showPopup);
 

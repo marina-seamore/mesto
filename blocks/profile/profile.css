@@ -10,7 +10,6 @@
     .profile {
         flex-direction: column;
         min-height: 286px;
-        align-content: center;
         justify-content: center;
     }
 }
