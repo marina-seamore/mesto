@@ -3,10 +3,12 @@ let editButton = document.querySelector('.profile__edit-button');
 let popupClose = document.querySelector('.popup__close-button');
 let form = document.querySelector('.popup__content');
 let nameField = document.querySelector('.popup__field_name');
-let descriptionField = document.querySelector('.popup__field_description')
+let descriptionField = document.querySelector('.popup__field_description');
 let name = document.querySelector('.profile__name');
 let description = document.querySelector('.profile__description');
 
+nameField.value = name.textContent;
+descriptionField.value = description.textContent;
 
 function showPopup() {
   popup.classList.add('popup_opened');
