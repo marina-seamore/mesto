@@ -22,66 +22,51 @@
         </div>
         <button type="button" class="button profile__add-button" aria-label="Добавить"></button>
     </section>
+
     <section class="elements">
-
-        <div class="element">
-            <img class="element__photo" src="./images/Карачаевск.jpg" alt="Карачаевск">
-            <div class="element__name-block">
-                <h2 class="element__name">Карачаевск</h2>
-                <button type="button" class="button element__like-button" aria-label="нравится"></button>
-            </div>
-        </div>
-
-        <div class="element">
-            <img class="element__photo" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-            <div class="element__name-block">
-                <h2 class="element__name">Гора Эльбрус</h2>
-                <button type="button" class="button element__like-button" aria-label="нравится"></button>
-            </div>
-        </div>
-
-        <div class="element">
-            <img class="element__photo" src="./images/Домбай.jpg" alt="Домбай">
-            <div class="element__name-block">
-                <h2 class="element__name">Домбай</h2>
-                <button type="button" class="button element__like-button" aria-label="нравится"></button>
-            </div>
-        </div>
-
-        <div class="element">
-            <img class="element__photo" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-            <div class="element__name-block">
-                <h2 class="element__name">Гора Эльбрус</h2>
-                <button type="button" class="button element__like-button" aria-label="нравится"></button>
-            </div>
-        </div>
-
-        <div class="element">
-            <img class="element__photo" src="./images/Домбай.jpg" alt="Домбай">
-            <div class="element__name-block">
-                <h2 class="element__name">Домбай</h2>
-                <button type="button" class="button element__like-button" aria-label="нравится"></button>
-            </div>
-        </div>
-
-        <div class="element">
-            <img class="element__photo" src="./images/Карачаевск.jpg" alt="Карачаево-Черкесия">
-            <div class="element__name-block">
-                <h2 class="element__name">Карачаево-Черкесия</h2>
-                <button type="button" class="button element__like-button" aria-label="нравится"></button>
-            </div>
-        </div>
 
     </section>
 
-    <section class="popup">
-        <form class="popup__content" name="popupForm">
+    <template class="element-template">
+        <article class="element">
+            <button type="button" class="button element__delete-button"></button>
+            <img class="element__photo" src="" alt="Фото">
+            <div class="element__name-block">
+                <h2 class="element__name"></h2>
+                <button type="button" class="button element__like-button" aria-label="нравится"></button>
+            </div>
+        </article>
+    </template>
+
+    <section class="popup popup_profile">
+        <form class="popup__content" name="popupFormProfile">
             <h3 class="popup__header">Редактировать профиль</h3>
-            <input type="text" class="popup__field popup__field_name" name="name" value="">
-            <input type="text" class="popup__field popup__field_description" name="description" value="">
+            <input type="text" class="popup__field popup__field_type_name" name="name" value="">
+            <input type="text" class="popup__field popup__field_type_description" name="description" value="">
             <button type="submit" class="popup__submit-button">Сохранить</button>
             <button type="button" class="popup__close-button" aria-label="закрыть"></button>
         </form>
+    </section>
+
+    <section class="popup popup_photo">
+        <form class="popup__content" name="popupFormPhoto">
+            <h3 class="popup__header">Новое место</h3>
+            <input type="text" class="popup__field popup__field_type_place" name="place" value=""
+                placeholder="Название">
+            <input type="url" class="popup__field popup__field_type_photo" name="description" value=""
+                placeholder="Ссылка на картинку">
+            <button type="submit" class="popup__submit-button">Сохранить</button>
+            <button type="button" class="popup__close-button popup__close-button-form" aria-label="закрыть"></button>
+        </form>
+    </section>
+
+    <section class="popup popup_full-photo">
+        <div class="full-photo">
+            <button type="button" class="popup__close-button popup__close-button-full-photo"
+                aria-label="закрыть"></button>
+            <img class="full-photo__image" src="" alt="Большое и красивое фото">
+            <p class="full-photo__place"></p>
+        </div>
     </section>
 
     <footer class="footer">
