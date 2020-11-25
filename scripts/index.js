@@ -1,18 +1,18 @@
-let popupProfile = document.querySelector('.popup_profile');
-let editButton = document.querySelector('.profile__edit-button');
-let closeButton = document.querySelector('.popup__close-button');
-let popup = document.querySelector('.popup__content');
-let nameField = document.querySelector('.popup__field_type_name');
-let descriptionField = document.querySelector('.popup__field_type_description');
-let name = document.querySelector('.profile__name');
-let description = document.querySelector('.profile__description');
+const popupProfile = document.querySelector('.popup_profile');
+const editButton = document.querySelector('.profile__edit-button');
+const closeButton = document.querySelector('.popup__close-button');
+const popup = document.querySelector('.popup__content');
+const nameField = document.querySelector('.popup__field_type_name');
+const descriptionField = document.querySelector('.popup__field_type_description');
+const name = document.querySelector('.profile__name');
+const description = document.querySelector('.profile__description');
 
-let elements = document.querySelector('.elements');
-let addButton = document.querySelector('.profile__add-button');
-let popupPhoto = document.querySelector('.popup_photo');
-let closeButtonPhoto = document.querySelector('.popup__close-button-form');
-
-let popupFullPhoto = document.querySelector('.popup_full-photo');
+const elements = document.querySelector('.elements');
+const addButton = document.querySelector('.profile__add-button');
+const popupPhoto = document.querySelector('.popup_photo');
+const closeButtonPhoto = document.querySelector('.popup__close-button-form');
+const elementTemplate = document.querySelector('.element-template').content.cloneNode(true);
+const popupFullPhoto = document.querySelector('.popup_full-photo');
 
 //popup for profile editing (open, close, submit = edit)
 
@@ -37,58 +37,76 @@ function submitForm(event) {
 }
 popup.addEventListener('submit', submitForm);
 
-//popup for Cards: (open, close, submit = add (beginning), delete, like ) 
+// //popup for Cards: (open, close, submit = add (beginning), delete, like ) 
 
-function formPhoto() {
-  addButton.addEventListener('click', function () {
-    popupPhoto.classList.add('popup_opened');
-  })
 
-  closeButtonPhoto.addEventListener('click', function () {
-    popupPhoto.classList.remove('popup_opened');
-  })
+
+//open popup
+addButton.addEventListener('click', function () {
+  popupPhoto.classList.add('popup_opened');
+})
+
+//close popup
+closeButtonPhoto.addEventListener('click', function () {
+  popupPhoto.classList.remove('popup_opened');
+})
+
+//delete Button
+function deleteButton(event) {
+  const element = event.target.closest('.element')
+    if (element) {
+      element.remove()
+}
+}
+
+//like button
+function likeButton(event) {
+  event.target.classList.toggle('element__like-button_active');
+}
+
+// add card element
+const photo = document.querySelector('.popup__field_type_photo');
+const place = document.querySelector('.popup__field_type_place');
+
+function addElementNew(card) {
+  let elementTemplate = document.querySelector('.element-template').content.cloneNode(true);
+  elementTemplate.querySelector('.element__name').textContent = place.value;
+  elementTemplate.querySelector('.element__photo').src = photo.value;
+
+  elementTemplate.querySelector('.element__delete-button').addEventListener('click', deleteButton);
+
+  elementTemplate.querySelector('.element__like-button').addEventListener('click',likeButton);
+
+  elementTemplate.querySelector('.element__photo').addEventListener('click', FullScreen);
+
+  return elementTemplate;
+}
+
+//submit function
 
   popupPhoto.addEventListener('submit', function (card) {
     card.preventDefault();
-    let elementTemplate = document.querySelector('.element-template').content.cloneNode(true);
-    let photo = document.querySelector('.popup__field_type_photo');
-    let place = document.querySelector('.popup__field_type_place');
-    let photoEl = elementTemplate.querySelector('.element__photo');
-    let placeEl = elementTemplate.querySelector('.element__name');
-    photoEl.src = photo.value;
-    placeEl.textContent = place.value;
+    
+    const addedCard = addElementNew(card)
 
-    elementTemplate.querySelector('.element__delete-button').addEventListener('click', event => {
-      let element = event.target.closest('.element')
-      if (element) {
-        element.remove()
-      }
-    })
-
-    elementTemplate.querySelector('.element__like-button').addEventListener('click', event => {
-      event.target.classList.toggle('element__like-button_active');
-    })
     popupPhoto.classList.remove('popup_opened');
 
-    elements.prepend(elementTemplate);
-
-    //open kinda FullScreen mode
-    photoEl.addEventListener('click', event => {
-
-      popupFullPhoto.querySelector('.full-photo__image').src = photoEl.src
-      popupFullPhoto.querySelector('.full-photo__place').textContent = placeEl.textContent
-
-      popupFullPhoto.classList.add('popup_opened');
-
-      popupFullPhoto.querySelector('.popup__close-button-full-photo').addEventListener('click', function () {
-        popupFullPhoto.classList.remove('popup_opened');
-      })
-    })
-
+    elements.prepend(addedCard);
   });
 
-}
-formPhoto();
+  
+  // FullScreen mode
+  function FullScreen(event) {
+    popupFullPhoto.querySelector('.full-photo__image').src = event.target.closest('.element__photo').src
+    popupFullPhoto.querySelector('.full-photo__place').textContent = event.target.closest('.element').textContent
+
+    popupFullPhoto.classList.add('popup_opened');
+
+    popupFullPhoto.querySelector('.popup__close-button-full-photo').addEventListener('click', function () {
+      popupFullPhoto.classList.remove('popup_opened');
+    })
+  }
+
 
 //initial set of cards
 
@@ -122,42 +140,20 @@ const initialElements = [
 
 function addElement(card) {
   let elementTemplate = document.querySelector('.element-template').content.cloneNode(true);
-  let place = elementTemplate.querySelector('.element__name');
-  let photo = elementTemplate.querySelector('.element__photo');
-  place.textContent = card.name;
-  photo.src = card.link;
+  elementTemplate.querySelector('.element__name').textContent = card.name;
+  elementTemplate.querySelector('.element__photo').src = card.link;
 
-  // elementTemplate.querySelector('.element__name').textContent = card.name;
-  // elementTemplate.querySelector('.element__photo').src = card.link;
+  elementTemplate.querySelector('.element__delete-button').addEventListener('click', deleteButton);
 
-  elementTemplate.querySelector('.element__delete-button').addEventListener('click', event => {
-    let element = event.target.closest('.element')
-    if (element) {
-      element.remove()
-    }
-  })
+  elementTemplate.querySelector('.element__like-button').addEventListener('click',likeButton);
 
-  elementTemplate.querySelector('.element__like-button').addEventListener('click', event => {
-    event.target.classList.toggle('element__like-button_active');
-  })
+  elementTemplate.querySelector('.element__photo').addEventListener('click', FullScreen);
 
-  elements.append(elementTemplate);
-
-  //open kinda FullScreen mode
-  photo.addEventListener('click', event => {
-
-    popupFullPhoto.querySelector('.full-photo__image').src = photo.src
-    popupFullPhoto.querySelector('.full-photo__place').textContent = place.textContent
-
-    popupFullPhoto.classList.add('popup_opened');
-
-    popupFullPhoto.querySelector('.popup__close-button-full-photo').addEventListener('click', function () {
-      popupFullPhoto.classList.remove('popup_opened');
-    })
-  })
+  return elementTemplate;
 
 }
 
 initialElements.forEach((card) => {
-  addElement(card);
+  const addedCard = addElement(card);
+  elements.append(addedCard);
 })
