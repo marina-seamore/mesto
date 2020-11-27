@@ -54,9 +54,9 @@ closeButtonPhoto.addEventListener('click', function () {
 //delete Button
 function deleteButton(event) {
   const element = event.target.closest('.element')
-    if (element) {
-      element.remove()
-}
+  if (element) {
+    element.remove()
+  }
 }
 
 //like button
@@ -75,7 +75,7 @@ function addElementNew(card) {
 
   elementTemplate.querySelector('.element__delete-button').addEventListener('click', deleteButton);
 
-  elementTemplate.querySelector('.element__like-button').addEventListener('click',likeButton);
+  elementTemplate.querySelector('.element__like-button').addEventListener('click', likeButton);
 
   elementTemplate.querySelector('.element__photo').addEventListener('click', FullScreen);
 
@@ -84,28 +84,89 @@ function addElementNew(card) {
 
 //submit function
 
-  popupPhoto.addEventListener('submit', function (card) {
-    card.preventDefault();
-    
-    const addedCard = addElementNew(card)
+popupPhoto.addEventListener('submit', function (card) {
+  card.preventDefault();
 
-    popupPhoto.classList.remove('popup_opened');
+  const addedCard = addElementNew(card)
 
-    elements.prepend(addedCard);
-  });
+  popupPhoto.classList.remove('popup_opened');
 
-  
-  // FullScreen mode
-  function FullScreen(event) {
-    popupFullPhoto.querySelector('.full-photo__image').src = event.target.closest('.element__photo').src
-    popupFullPhoto.querySelector('.full-photo__place').textContent = event.target.closest('.element').textContent
+  elements.prepend(addedCard);
+});
 
-    popupFullPhoto.classList.add('popup_opened');
 
-    popupFullPhoto.querySelector('.popup__close-button-full-photo').addEventListener('click', function () {
-      popupFullPhoto.classList.remove('popup_opened');
-    })
+// FullScreen mode
+function FullScreen(event) {
+  popupFullPhoto.querySelector('.full-photo__image').src = event.target.closest('.element__photo').src
+  popupFullPhoto.querySelector('.full-photo__place').textContent = event.target.closest('.element').textContent
+
+  popupFullPhoto.classList.add('popup_opened');
+
+  popupFullPhoto.querySelector('.popup__close-button-full-photo').addEventListener('click', function () {
+    popupFullPhoto.classList.remove('popup_opened');
+  })
+}
+
+
+//FOOOOOORMS
+
+//form=popup
+
+function showError(form, field) {
+  const error = form.querySelector(`#${field.id}-error`);
+  error.textContent = field.validationMessage;
+  field.classList.add('.popup__error');
+}
+
+function hideError(form, field) {
+  const error = form.querySelector(`#${field.id}-error`);
+  error.textContent = '';
+  field.classList.remove('.popup__error');
+}
+
+function checkValidity(form, field) {
+  if (!field.validity.valid) {
+    showError(form, field);
+  } else {
+    hideError(form, field);
   }
+}
+
+function saveButtonState(button, isActive) {
+  if (isActive) {
+    button.classList.remove('popup__submit-button_inactive')
+    button.disabled = false;
+  } else {
+    button.classList.add('popup__submit-button_inactive')
+    button.disabled = true;
+  }
+}
+
+function setEventListeners(form) {
+  const fieldsList = form.querySelectorAll('.popup__field');
+  const saveButton = form.querySelector('.popup__submit-button');
+
+  fieldsList.forEach((field) => {
+    field.addEventListener('input', () => {
+      checkValidity(form, field);
+      saveButtonState(saveButton, form.checkValidity())
+    })
+  })
+}
+
+function enableValidation() {
+  const forms = document.querySelectorAll('.popup__content');
+  forms.forEach((form) => {
+    setEventListeners(form);
+    form.addEventListener('submit', (evt) => {
+      evt.preventDefault();
+      console.log('please work')
+    });
+    const saveButton = form.querySelector('.popup__submit-button');
+    saveButtonState(saveButton, form.checkValidity())
+  });
+}
+enableValidation();
 
 
 //initial set of cards
@@ -145,7 +206,7 @@ function addElement(card) {
 
   elementTemplate.querySelector('.element__delete-button').addEventListener('click', deleteButton);
 
-  elementTemplate.querySelector('.element__like-button').addEventListener('click',likeButton);
+  elementTemplate.querySelector('.element__like-button').addEventListener('click', likeButton);
 
   elementTemplate.querySelector('.element__photo').addEventListener('click', FullScreen);
 
