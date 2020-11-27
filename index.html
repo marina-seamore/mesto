@@ -41,8 +41,8 @@
     <section class="popup popup_profile">
         <form class="popup__content" name="popupFormProfile">
             <h3 class="popup__header">Редактировать профиль</h3>
-            <input type="text" class="popup__field popup__field_type_name" name="name" value="">
-            <input type="text" class="popup__field popup__field_type_description" name="description" value="">
+            <input type="text" class="popup__field popup__field_type_name" name="name" value="" minlength="2" maxlength="40" required>
+            <input type="text" class="popup__field popup__field_type_description" name="description" value="" minlength="2" maxlength="200" required>
             <button type="submit" class="popup__submit-button">Сохранить</button>
             <button type="button" class="popup__close-button" aria-label="закрыть"></button>
         </form>
@@ -52,7 +52,7 @@
         <form class="popup__content" name="popupFormPhoto">
             <h3 class="popup__header">Новое место</h3>
             <input type="text" class="popup__field popup__field_type_place" name="place" value=""
-                placeholder="Название">
+                placeholder="Название" minlength="2" maxlength="30">
             <input type="url" class="popup__field popup__field_type_photo" name="description" value=""
                 placeholder="Ссылка на картинку">
             <button type="submit" class="popup__submit-button">Сохранить</button>
