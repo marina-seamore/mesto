@@ -16,6 +16,6 @@
     }
 }
 
-.popup__field:invalid {
-    border-bottom: 1px solid red;
-}
+.popup__field:invalid:not(:placeholder-shown) {
+    border-bottom: 1px solid #FF0000;
+  }

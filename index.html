@@ -55,13 +55,13 @@
     <section class="popup popup_photo">
         <form class="popup__content" name="popupFormPhoto" novalidate>
             <h3 class="popup__header">Новое место</h3>
-            <input type="text" class="popup__field popup__field_type_place" name="place" id="place" value=""
-                placeholder="Название" minlength="2" maxlength="30" required>
+            <input type="text" class="popup__field popup__field_type_place" placeholder="Название" name="place"
+                id="place" value="" minlength="2" maxlength="30" required>
             <span id="place-error" class="popup__error"></span>
-            <input type="url" class="popup__field popup__field_type_photo" name="imageLink" id="imageLink" value=""
+            <input type="url" class="popup__field popup__field_type_photo" name="imageLink" id="image" value=""
                 placeholder="Ссылка на картинку" required>
-            <span id="imageLink-error" class="popup__error"></span>
-            <button type="submit" class="popup__submit-button">Создать</button>
+            <span id="image-error" class="popup__error"></span>
+            <button type="submit" class="popup__submit-button popup__submit-button_inactive" disabled>Создать</button>
             <button type="button" class="popup__close-button popup__close-button-form" aria-label="закрыть"></button>
         </form>
     </section>
@@ -79,7 +79,9 @@
         <p class="footer__logo">&copy; 2020 Mesto Russia</p>
     </footer>
 
+    <script src="./scripts/initialElements.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/forms.js"></script>
 </body>
 
 </html>
