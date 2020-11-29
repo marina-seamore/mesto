@@ -13,6 +13,11 @@ function hideError(form, field, config) {
   field.classList.remove(config.fieldInvalidClass);
 }
 
+function saveButtonDisabled(button, config) {
+  button.classList.add(config.buttonInvalidClass)
+  button.disabled = true;
+}
+
 function checkValidity(form, field, config) {
   if (!field.validity.valid) {
     showError(form, field, config);
@@ -26,8 +31,7 @@ function saveButtonState(button, isActive, config) {
     button.classList.remove(config.buttonInvalidClass)
     button.disabled = false;
   } else {
-    button.classList.add(config.buttonInvalidClass)
-    button.disabled = true;
+    saveButtonDisabled(button, config)
   }
 }
 
@@ -50,7 +54,7 @@ function enableValidation(config) {
     form.addEventListener('submit', (evt) => {
       evt.preventDefault();
       const saveButton = form.querySelector(config.submitButtonSelector);
-      saveButtonState(saveButton, form.checkValidity(), config)
+      saveButtonDisabled(saveButton, config)
     });
   });
 }
