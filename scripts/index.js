@@ -31,8 +31,6 @@ editButton.addEventListener('click', function () {
 
 addButton.addEventListener('click', function () {
   showPopup(popupPhoto);
-  place.value = '';
-  photo.value = '';
 });
 
 //close popup function and buttons
@@ -40,6 +38,7 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupEsc);
   document.removeEventListener('click', closeAllPopups);
+  popup.querySelector('.popup__content').reset();
 }
 
 closeButtonProfile.addEventListener('click', function () {
@@ -83,14 +82,13 @@ function submitForm(event) {
   name.textContent = nameField.value;
   description.textContent = descriptionField.value;
   closePopup(popupProfile);
-
 }
 popup.addEventListener('submit', submitForm);
 
 
 //delete Button
 function deleteButton(event) {
-  const element = event.target.closest('.element').remove()
+  event.target.closest('.element').remove()
 }
 
 //like button
