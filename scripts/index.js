@@ -38,7 +38,9 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupEsc);
   document.removeEventListener('click', closeAllPopups);
-  popup.querySelector('.popup__content').reset();
+  if (!popup.classList.contains('popup_full-photo')) {
+    popup.querySelector('.popup__content').reset();
+  }
 }
 
 closeButtonProfile.addEventListener('click', function () {
