@@ -110,7 +110,7 @@ popupPhoto.addEventListener('submit', function (event) {
 
 //fullscreen function
 const popupFullPhoto = document.querySelector('.popup_full-photo');
-const cardElements = document.querySelectorAll('.element');
+const cardElements = document.querySelectorAll('.element__photo');
 
 cardElements.forEach((card) => {
   card.addEventListener('click', function(event) {
