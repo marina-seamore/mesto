@@ -2,12 +2,6 @@ import { Card } from './Card.js';
 import {FormValidator} from './FormValidator.js';
 
 const container = document.querySelector('.elements');
-
-initialElements.forEach((item) => {
-  const card = new Card(item.link, item.name, container);
-  document.body.append(card);
-})
-
 const popupProfile = document.querySelector('.popup_profile');
 const nameField = document.querySelector('.popup__field_type_name');
 const descriptionField = document.querySelector('.popup__field_type_description');
@@ -36,6 +30,12 @@ editFormValidator.enableValidation();
 
 const AddCardFormValidator = new FormValidator(validationConfig, addCardForm);
 AddCardFormValidator.enableValidation();
+
+
+initialElements.forEach((item) => {
+  const card = new Card(item.link, item.name, container);
+  document.body.append(card);
+})
 
 //show popup functions and buttons
 function showPopup(popup) {
