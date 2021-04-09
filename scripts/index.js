@@ -1,5 +1,5 @@
 import { Card } from './Card.js';
-import {FormValidator} from './FormValidator.js';
+import { FormValidator } from './FormValidator.js';
 
 const container = document.querySelector('.elements');
 const popupProfile = document.querySelector('.popup_profile');
@@ -12,6 +12,7 @@ const addButton = document.querySelector('.profile__add-button');
 const popupPhoto = document.querySelector('.popup_photo');
 const photo = popupPhoto.querySelector('.popup__field_type_photo');
 const place = popupPhoto.querySelector('.popup__field_type_place');
+const popupFullPhoto = document.querySelector('.popup_full-photo');
 
 const validationConfig = {
   formSelector: '.popup__content',
@@ -43,7 +44,6 @@ function showPopup(popup) {
   document.addEventListener('keydown', closePopupEsc);
   document.addEventListener('click', closePopupOverlay);
   document.addEventListener('click', closeButtonHandler);
-
 }
 
 editButton.addEventListener('click', function () {
@@ -54,6 +54,9 @@ editButton.addEventListener('click', function () {
 
 addButton.addEventListener('click', function () {
   showPopup(popupPhoto);
+  const saveButton = popupPhoto.querySelector('.popup__submit-button')
+  saveButton.disabled = true;
+  saveButton.classList.add('popup__submit-button_inactive');
 });
 
 // //close popup function and buttons
@@ -108,24 +111,3 @@ popupPhoto.addEventListener('submit', function (event) {
   closePopup(popupPhoto);
 });
 
-//fullscreen function
-const popupFullPhoto = document.querySelector('.popup_full-photo');
-const cardElements = document.querySelectorAll('.element__photo');
-
-cardElements.forEach((card) => {
-  card.addEventListener('click', function(event) {
-    showPopup(popupFullPhoto);
-    popupFullPhoto.querySelector('.full-photo__image').src = event.target.closest('.element__photo').src;
-    popupFullPhoto.querySelector('.full-photo__place').textContent = event.target.closest('.element').textContent;
-  })
-})
-
-// document.addEventListener('click', function (event) {
-//   if (event.target.classList.contains('element')) {
-//     showPopup(popupFullPhoto);
-//     popupFullPhoto.querySelector('.full-photo__image').src = event.target.closest('.element__photo').src;
-//     popupFullPhoto.querySelector('.full-photo__place').textContent = event.target.closest('.element').textContent;
-//   }
-// })
-
-// const photoElements = document.querySelectorAll('.element__photo')

@@ -20,23 +20,37 @@ export class Card {
         this._card.remove();
     }
 
-    _openPopup = () => {
-        this._card.classList.add('popup_opened');
+    _openPopupFullScreen = (event) => {
+        const popupFullPhoto = document.querySelector('.popup_full-photo');
+        popupFullPhoto.querySelector('.full-photo__image').src = event.target.closest('.element__photo').src;
+        popupFullPhoto.querySelector('.full-photo__place').textContent = event.target.closest('.element').textContent;
+        popupFullPhoto.classList.add('popup_opened');
     }
 
-    _closePopup = () => {
-        this._card.classList.remove('popup_opened');
+    _closePopupFullScreen = () => {
+        const popupFullPhoto = document.querySelector('.popup_full-photo');
+        popupFullPhoto.classList.remove('popup_opened');
     }
 
-    _closePopupHandler = () => {
-        document.querySelector('.popup').addEventListener('click', this._closePopup);
-        this._card.querySelector('.popup__close-button-full-photo').addEventListener('click', this._closePopup);
-    }
+    _closeFullScreenPopupOverlay = (event) => {
+        if (event.target.classList.contains('popup')) {
+            this._closePopupFullScreen();
+        }
+      }
+            
+      _closeFullScreenPopupEsc = (event) => {
+        if (event.key === 'Escape') {
+            this._closePopupFullScreen();
+        }
+      }
 
     _setEventListeners = () => {
         this._card.querySelector('.element__delete-button').addEventListener('click', this._remove);
         this._card.querySelector('.element__like-button').addEventListener('click', this._likeHandler);
-        this._card.querySelector('.element__photo').addEventListener('click', this._fullScreenHandler);
+        this._card.querySelector('.element__photo').addEventListener('click', this._openPopupFullScreen);        
+        document.querySelector('.popup__close-button-full-photo').addEventListener('click', this._closePopupFullScreen);
+        document.addEventListener('click', this._closeFullScreenPopupOverlay);
+        document.addEventListener('keydown', this._closeFullScreenPopupEsc)
     }
 
     static template = document.querySelector('.element-template').content;
