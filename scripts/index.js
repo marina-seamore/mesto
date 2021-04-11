@@ -13,6 +13,9 @@ const popupPhoto = document.querySelector('.popup_photo');
 const photo = popupPhoto.querySelector('.popup__field_type_photo');
 const place = popupPhoto.querySelector('.popup__field_type_place');
 const popupFullPhoto = document.querySelector('.popup_full-photo');
+const newCardPopupContent = popupPhoto.querySelector('.popup__content');
+const fullPhotoImage = popupFullPhoto.querySelector('.full-photo__image');
+const fullPhotoPlace = popupFullPhoto.querySelector('.full-photo__place');
 
 const validationConfig = {
   formSelector: '.popup__content',
@@ -61,7 +64,7 @@ editButton.addEventListener('click', function () {
 });
 
 addButton.addEventListener('click', function () {
-  popupPhoto.querySelector('.popup__content').reset();
+  newCardPopupContent.reset();
   showPopup(popupPhoto);
   addCardFormValidator.resetValidation();
 });
@@ -116,8 +119,8 @@ popupPhoto.addEventListener('submit', function (event) {
 
 //
 function handleCardClick(name, link) {
-  popupFullPhoto.querySelector('.full-photo__image').src = link;
-  popupFullPhoto.querySelector('.full-photo__place').textContent = name;
+  fullPhotoImage.src = link;
+  fullPhotoPlace.textContent = name;
   showPopup(popupFullPhoto)
 }
 
