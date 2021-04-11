@@ -65,10 +65,9 @@ export class FormValidator {
     }
 
     resetValidation() {
-        this._fieldsList = Array.from(this._element.querySelectorAll(this._fieldSelector));
         this._fieldsList.forEach((field) => {
             this._hideError(field);
-            this._saveButtonHandler();
         })
+        this._saveButtonHandler();
     }
 }
