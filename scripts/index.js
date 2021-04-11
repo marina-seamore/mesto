@@ -29,8 +29,8 @@ const addCardForm = document.querySelector('.popup_photo');
 const editFormValidator = new FormValidator(validationConfig, editForm);
 editFormValidator.enableValidation();
 
-const AddCardFormValidator = new FormValidator(validationConfig, addCardForm);
-AddCardFormValidator.enableValidation();
+const addCardFormValidator = new FormValidator(validationConfig, addCardForm);
+addCardFormValidator.enableValidation();
 
 const cardSelector = '.element-template';
 
@@ -57,12 +57,13 @@ editButton.addEventListener('click', function () {
   showPopup(popupProfile);
   nameField.value = name.textContent;
   descriptionField.value = description.textContent;
+  editFormValidator.resetValidation();
 });
 
 addButton.addEventListener('click', function () {
   popupPhoto.querySelector('.popup__content').reset();
   showPopup(popupPhoto);
-  AddCardFormValidator.resetValidation();
+  addCardFormValidator.resetValidation();
 });
 
 // //close popup function and buttons
