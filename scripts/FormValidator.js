@@ -60,7 +60,15 @@ export class FormValidator {
     enableValidation() {
         this._element.addEventListener('submit', (event) => {
             event.preventDefault();
-          })
+        })
         this._setEventListeners();
+    }
+
+    resetValidation() {
+        this._fieldsList = Array.from(this._element.querySelectorAll(this._fieldSelector));
+        this._fieldsList.forEach((field) => {
+            this._hideError(field);
+            this._saveButtonHandler();
+        })
     }
 }

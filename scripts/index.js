@@ -62,9 +62,7 @@ editButton.addEventListener('click', function () {
 addButton.addEventListener('click', function () {
   popupPhoto.querySelector('.popup__content').reset();
   showPopup(popupPhoto);
-  const saveButton = popupPhoto.querySelector('.popup__submit-button')
-  saveButton.disabled = true;
-  saveButton.classList.add('popup__submit-button_inactive');
+  AddCardFormValidator.resetValidation();
 });
 
 // //close popup function and buttons
