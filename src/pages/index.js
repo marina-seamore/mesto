@@ -6,20 +6,13 @@ import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 
 const container = document.querySelector('.elements');
-const popupProfile = document.querySelector('.popup_profile');
 const nameField = document.querySelector('.popup__field_type_name');
 const descriptionField = document.querySelector('.popup__field_type_description');
-const name = document.querySelector('.profile__name');
-const description = document.querySelector('.profile__description');
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 const popupPhoto = document.querySelector('.popup_photo');
 const photo = popupPhoto.querySelector('.popup__field_type_photo');
 const place = popupPhoto.querySelector('.popup__field_type_place');
-const popupFullPhoto = document.querySelector('.popup_full-photo');
-const newCardPopupContent = popupPhoto.querySelector('.popup__content');
-const fullPhotoImage = popupFullPhoto.querySelector('.full-photo__image');
-const fullPhotoPlace = popupFullPhoto.querySelector('.full-photo__place');
 
 const validationConfig = {
   formSelector: '.popup__content',
