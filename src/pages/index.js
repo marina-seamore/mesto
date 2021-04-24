@@ -40,16 +40,23 @@ const addCardFormValidator = new FormValidator(validationConfig, addCardForm);
 addCardFormValidator.enableValidation();
 
 
+const fullScreenPopup = new PopupWithImage('.popup_full-photo');
+fullScreenPopup.setEventListeners();
 
-
-function createCards(link, name, cardSelector, handleCardClick) {
-  const card = new Card(link, name, cardSelector, handleCardClick);
+function createCards(link, name, cardSelector) {
+  const card = new Card(link, name, cardSelector,
+    {
+      handleCardClick: () => {
+        fullScreenPopup.open(link, name)
+      }
+    });
   const createdCard = card.createCard();
   return createdCard;
 }
 
+
 initialElements.forEach((item) => {
-  container.append(createCards(item.link, item.name, '.element-template', handleCardClick));
+  container.append(createCards(item.link, item.name, '.element-template'));
 })
 
 const addCardPopup = new PopupWithForm('.popup_photo');
@@ -155,9 +162,3 @@ const cardList = new Section({
 // });
 
 //
-function handleCardClick(name, link) {
-  fullPhotoImage.src = link;
-  fullPhotoPlace.textContent = name;
-  showPopup(popupFullPhoto)
-}
-

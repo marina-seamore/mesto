@@ -1,6 +1,6 @@
 export default class Card {
 
-    constructor(image, text, cardSelector, handleCardClick) {
+    constructor(image, text, cardSelector, {handleCardClick}) {
         this._image = image;
         this._text = text;
         this._isLiked = false;
