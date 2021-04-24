@@ -5,9 +5,15 @@ export default class UserInfo {
     }
 
     getUserInfo() {
+        return {
+            userName: this._profileName.textContent,
+            userDescription: this._profileDescription.textContent
+        }
     }
 
-    setUserInfor() {
+    setUserInfo({userName, userDescription}) {
+        if (userName) this._profileName.textContent = userName;
+        if (userDescription) this._profileDescription.textContent = userDescription;
     }
 
 }
