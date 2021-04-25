@@ -3,7 +3,7 @@ const cssnano = require('cssnano');
 
 module.exports = {
   plugins: [
-    autoprefixer,
+    autoprefixer(),
     cssnano({ preset: 'default' })
   ]
 };
