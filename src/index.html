@@ -4,17 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type='text/css' href="./pages/index.css">
+    <!-- <link rel="stylesheet" type='text/css' href="./pages/index.css"> -->
     <title>Mesto</title>
 </head>
 
 <body class="page">
 
     <header class="header">
-        <img class="header__logo" src="./images/mesto-logo.svg" alt="Лого Место">
+        <img class="header__logo" src="<%=require('./images/mesto-logo.svg')%>" alt="Лого Место">
     </header>
     <section class="profile">
-        <img class="profile__avatar" src="./images/profile-image.jpg" alt="Фото профиля">
+        <img class="profile__avatar" src="<%=require('./images/profile-image.jpg')%>" alt="Фото профиля">
         <div class="profile__info">
             <h1 class="profile__name">Жак-Ив-Кусто</h1>
             <button type="button" class="button profile__edit-button" aria-label="Редактировать"></button>
@@ -30,7 +30,7 @@
     <template class="element-template">
         <article class="element">
             <button type="button" class="button element__delete-button"></button>
-            <img class="element__photo" src="./images/Горд.jpg" alt="Фото">
+            <img class="element__photo" src="<%=require('./images/Горд.jpg')%>" alt="Фото">
             <div class="element__name-block">
                 <h2 class="element__name"></h2>
                 <button type="button" class="button element__like-button" aria-label="нравится"></button>
@@ -70,7 +70,7 @@
         <div class="full-photo">
             <button type="button" class="popup__close-button popup__close-button-full-photo"
                 aria-label="закрыть"></button>
-            <img class="full-photo__image" src="./images/Горд.jpg" alt="Большое и красивое фото">
+            <img class="full-photo__image" src="<%=require('./images/Горд.jpg')%>" alt="Большое и красивое фото">
             <p class="full-photo__place"></p>
         </div>
     </section>
@@ -79,10 +79,10 @@
         <p class="footer__logo">&copy; 2020 Mesto Russia</p>
     </footer>
 
-    <script src="./components/initialElements.js"></script>
+    <!-- <script src="./components/initialElements.js"></script>
     <script type="module" src="./components/Card.js"></script>
     <script type="module" src="./components/FormValidator.js"></script>
-    <script type="module" src="./pages/index.js"></script>
+    <script type="module" src="./pages/index.js"></script> -->
 </body>
 
 </html>

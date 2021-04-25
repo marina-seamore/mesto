@@ -6,9 +6,11 @@ export default class Card {
         this._isLiked = false;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
+        this._likeHandler = this._likeHandler.bind(this);
+        this._remove = this._remove.bind(this);
     }
 
-    _getTemplate = () => {
+    _getTemplate () {
         const cardTemplate = document
             .querySelector(this._cardSelector)
             .content
@@ -17,15 +19,15 @@ export default class Card {
         return cardTemplate;
     }
 
-    _likeHandler = () => {
+    _likeHandler () {
         this._card.querySelector('.element__like-button').classList.toggle('element__like-button_active');
     }
 
-    _remove = () => {
+    _remove () {
         this._card.remove();
     }
 
-    _setEventListeners = () => {
+    _setEventListeners () {
         this._card.querySelector('.element__delete-button').addEventListener('click', this._remove);
         this._card.querySelector('.element__like-button').addEventListener('click', this._likeHandler);
         this._card.querySelector('.element__photo').addEventListener('click', () => {
@@ -33,7 +35,7 @@ export default class Card {
         });
     }
 
-    createCard = () => {
+    createCard () {
         this._card = this._getTemplate();
         this._card.querySelector('.element__photo').src = this._image;
         this._card.querySelector('.element__photo').alt = this._text
