@@ -61,6 +61,7 @@ const addCardPopup = new PopupWithForm({
 
 addButton.addEventListener('click', () => {
   addCardPopup.open();
+  addCardFormValidator.resetValidation();
 })
 
 
@@ -77,6 +78,7 @@ editButton.addEventListener('click', () => {
   nameField.value = userInfo.getUserInfo().userName;
   descriptionField.value = userInfo.getUserInfo().userDescription;
   editProfilePopup.open();
+  editFormValidator.resetValidation();
 })
 
 
