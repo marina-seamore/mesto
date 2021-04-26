@@ -54,7 +54,7 @@ const fullScreenPopup = new PopupWithImage(popupConfig.fullPhotoPopup);
 const addCardPopup = new PopupWithForm({
   popupSelector: popupConfig.addPhotoPopup,
   submit: () => {
-    container.prepend(createCards(photo.value, place.value, '.element-template'))
+    cardList.addItemPrepend(createCards(photo.value, place.value, '.element-template'))
     addCardPopup.close();
   }
 });
