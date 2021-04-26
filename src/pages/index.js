@@ -50,6 +50,7 @@ addCardFormValidator.enableValidation();
 
 
 const fullScreenPopup = new PopupWithImage(popupConfig.fullPhotoPopup);
+fullScreenPopup.setEventListeners();
 
 const addCardPopup = new PopupWithForm({
   popupSelector: popupConfig.addPhotoPopup,
@@ -58,6 +59,7 @@ const addCardPopup = new PopupWithForm({
     addCardPopup.close();
   }
 });
+addCardPopup.setEventListeners();
 
 addButton.addEventListener('click', () => {
   addCardPopup.open();
@@ -73,6 +75,7 @@ const editProfilePopup = new PopupWithForm({
     editProfilePopup.close();
   }
 });
+editProfilePopup.setEventListeners();
 
 editButton.addEventListener('click', () => {
   nameField.value = userInfo.getUserInfo().userName;
