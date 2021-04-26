@@ -67,8 +67,7 @@ addButton.addEventListener('click', () => {
 
 const editProfilePopup = new PopupWithForm({
   popupSelector: popupConfig.profilePopup,
-  submit: (event) => {
-    event.preventDefault();
+  submit: () => {
     userInfo.setUserInfo(nameField.value, descriptionField.value);
     editProfilePopup.close();
   }
