@@ -24,11 +24,22 @@ const validationConfig = {
   buttonInvalidClass: 'popup__submit-button_inactive',
 };
 
-const editForm = document.querySelector('.popup_profile');
-const addCardForm = document.querySelector('.popup_photo');
-const userInfo = new UserInfo({
+const profileConfig = {
   profileName: '.profile__name',
   profileDescription: '.profile__description'
+}
+
+const popupConfig = {
+  fullPhotoPopup: '.popup_full-photo',
+  addPhotoPopup: '.popup_photo',
+  profilePopup: '.popup_profile'
+}
+
+const editForm = document.querySelector(popupConfig.profilePopup);
+const addCardForm = document.querySelector(popupConfig.addPhotoPopup);
+const userInfo = new UserInfo({
+  profileName: profileConfig.profileName,
+  profileDescription: profileConfig.profileDescription
 });
 
 const editFormValidator = new FormValidator(validationConfig, editForm);
@@ -38,11 +49,10 @@ const addCardFormValidator = new FormValidator(validationConfig, addCardForm);
 addCardFormValidator.enableValidation();
 
 
-const fullScreenPopup = new PopupWithImage('.popup_full-photo');
-fullScreenPopup.setEventListeners();
+const fullScreenPopup = new PopupWithImage(popupConfig.fullPhotoPopup);
 
 const addCardPopup = new PopupWithForm({
-  popupSelector: '.popup_photo',
+  popupSelector: popupConfig.addPhotoPopup,
   submit: () => {
     container.prepend(createCards(photo.value, place.value, '.element-template'))
     addCardPopup.close();
@@ -51,13 +61,12 @@ const addCardPopup = new PopupWithForm({
 
 addButton.addEventListener('click', () => {
   addCardPopup.open();
-  addCardPopup.setEventListeners();
 })
 
 
 
 const editProfilePopup = new PopupWithForm({
-  popupSelector: '.popup_profile',
+  popupSelector: popupConfig.profilePopup,
   submit: (event) => {
     event.preventDefault();
     userInfo.setUserInfo(nameField.value, descriptionField.value);
