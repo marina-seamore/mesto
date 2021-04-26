@@ -90,8 +90,8 @@ function createCards(link, name, cardSelector) {
         fullScreenPopup.open(link, name)
       }
     });
-  const createdCard = card.createCard();
-  return createdCard;
+
+  return card.createCard();
 }
 
 const cardList = new Section({
