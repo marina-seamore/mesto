@@ -26,7 +26,8 @@ const validationConfig = {
 
 const profileConfig = {
   profileName: '.profile__name',
-  profileDescription: '.profile__description'
+  profileDescription: '.profile__description',
+  elementTemplate: '.element-template'
 }
 
 const popupConfig = {
@@ -55,7 +56,7 @@ fullScreenPopup.setEventListeners();
 const addCardPopup = new PopupWithForm({
   popupSelector: popupConfig.addPhotoPopup,
   submit: () => {
-    cardList.addItemPrepend(createCards(photo.value, place.value, '.element-template'))
+    cardList.prependItem(createCards(photo.value, place.value, profileConfig.elementTemplate))
     addCardPopup.close();
   }
 });
@@ -100,7 +101,7 @@ function createCards(link, name, cardSelector) {
 const cardList = new Section({
   items: initialElements,
   renderer: (item) => {
-    cardList.addItem(createCards(item.link, item.name, '.element-template'))
+    cardList.appendItem(createCards(item.link, item.name, profileConfig.elementTemplate))
   }
 }, '.elements'
 )
