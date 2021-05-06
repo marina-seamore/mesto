@@ -16,7 +16,8 @@ export const validationConfig = {
     fullPhotoPopup: '.popup_full-photo',
     addPhotoPopup: '.popup_photo',
     profilePopup: '.popup_profile',
-    editProfilePhotoPopup: '.popup_profile-photo'
+    editProfileAvatarPopup: '.popup_edit-avatar',
+    confirmationPopup: '.popup_confirm'
   }
 
   export const apiConfig = {
