@@ -15,5 +15,12 @@ export const validationConfig = {
   export const popupConfig = {
     fullPhotoPopup: '.popup_full-photo',
     addPhotoPopup: '.popup_photo',
-    profilePopup: '.popup_profile'
+    profilePopup: '.popup_profile',
+    editProfilePhotoPopup: '.popup_profile-photo'
+  }
+
+  export const apiConfig = {
+      address: `https://mesto.nomoreparties.co/v1`,
+      cohortId: `cohort-23`,
+      token: `2f40adb1-d905-40eb-b5eb-fef99da08bb6`
   }
