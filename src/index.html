@@ -14,7 +14,10 @@
         <img class="header__logo" src="<%=require('./images/mesto-logo.svg')%>" alt="Лого Место">
     </header>
     <section class="profile">
-        <img class="profile__avatar" src="<%=require('./images/profile-image.jpg')%>" alt="Фото профиля">
+        <div class="profile__avatar">
+            <img class="profile__avatar_type_image" src="<%=require('./images/profile-image.jpg')%>" alt="Фото профиля">
+            <button class="button profile__avatar_type_button"></button>
+        </div>
         <div class="profile__info">
             <h1 class="profile__name">Жак-Ив-Кусто</h1>
             <button type="button" class="button profile__edit-button" aria-label="Редактировать"></button>
@@ -41,11 +44,11 @@
     <section class="popup popup_profile">
         <form class="popup__content" name="popupFormProfile" novalidate>
             <h3 class="popup__header">Редактировать профиль</h3>
-            <input type="text" class="popup__field popup__field_type_name" placeholder="Имя" name="name" id="name" value="" minlength="2"
-                maxlength="40" required>
+            <input type="text" class="popup__field popup__field_type_name" placeholder="Имя" name="name" id="name"
+                value="" minlength="2" maxlength="40" required>
             <span id="name-error" class="popup__error"></span>
-            <input type="text" class="popup__field popup__field_type_description" placeholder="Вид деятельности" name="description" id="description"
-                value="" minlength="2" maxlength="200" required>
+            <input type="text" class="popup__field popup__field_type_description" placeholder="Вид деятельности"
+                name="description" id="description" value="" minlength="2" maxlength="200" required>
             <span id="description-error" class="popup__error"></span>
             <button type="submit" class="popup__submit-button">Сохранить</button>
             <button type="button" class="popup__close-button" aria-label="закрыть"></button>
