@@ -21,7 +21,10 @@ export const validationConfig = {
   }
 
   export const apiConfig = {
-      address: `https://mesto.nomoreparties.co/v1`,
-      cohortId: `cohort-23`,
-      token: `2f40adb1-d905-40eb-b5eb-fef99da08bb6`
-  }
+    address: `https://mesto.nomoreparties.co/v1`,
+    cohortId: `cohort-23`,
+    headers: {
+    authorization: `2f40adb1-d905-40eb-b5eb-fef99da08bb6`,
+    'Content-Type': 'application/json'
+    }
+}
