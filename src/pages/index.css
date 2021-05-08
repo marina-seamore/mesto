@@ -15,8 +15,9 @@
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__photo/element__photo.css);
 @import url(../blocks/element/__name/element__name.css);
-@import url(../blocks/element/__like-button/element__like-button.css);
-@import url(../blocks/element/__like-button/__like-button_active/element__like-button_active.css);
+@import url(../blocks/element/__likes/_button/element__likes_button.css);
+@import url(../blocks/element/__likes/_button/_active/element__likes_button_active.css);
+@import url(../blocks/element/__likes/_counter/element__likes_counter.css);
 @import url(../blocks/element/__name-block/element__name-block.css);
 @import url(../blocks/element/__delete-button/element__delete-button.css);
 @import url(../blocks/footer/footer.css);
