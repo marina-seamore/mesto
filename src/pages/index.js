@@ -25,7 +25,8 @@ const editProfileAvatarForm = document.querySelector(popupConfig.editProfileAvat
 
 const userInfo = new UserInfo({
   profileName: profileConfig.profileName,
-  profileDescription: profileConfig.profileDescription
+  profileDescription: profileConfig.profileDescription,
+  profileAvatar: profileConfig.profileAvatar
 });
 
 const editFormValidator = new FormValidator(validationConfig, editForm);
@@ -58,9 +59,16 @@ addButton.addEventListener('click', () => {
 
 const editProfilePopup = new PopupWithForm({
   popupSelector: popupConfig.profilePopup,
-  submit: () => {
-    userInfo.setUserInfo(nameField.value, descriptionField.value);
-    editProfilePopup.close();
+  submit: (info) => {
+    api.setUserInfo({
+      name: info.name,
+      about: info.description
+    })
+    .then((data) => {
+      userInfo.setUserInfo(data.name, data.about, data.avatar)
+      editProfilePopup.close();
+    })
+    .catch((err) => alert(err))
   }
 });
 editProfilePopup.setEventListeners();
@@ -105,5 +113,11 @@ cardsData.then((data) => {
   },
   '.elements')
   cardsList.renderItems();
+})
+.catch((err) => alert(err))
+
+const getUserData = api.getUserInfo();
+getUserData.then((data) => {
+  userInfo.setUserInfo(data.name, data.about, data.avatar)
 })
 .catch((err) => alert(err))

@@ -19,4 +19,70 @@ export default class Api {
             .then(this.returnResultStatus)
     }
 
+    getUserInfo() {
+        return fetch(`${this._address}/${this._cohortId}/users/me`, {
+            headers: this._headers
+        })
+            .then(this.returnResultStatus)
+    }
+
+    setUserInfo({ name, about }) {
+        return fetch(`${this._address}/${this._cohortId}/users/me`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                name: name,
+                about: about
+            })
+        })
+            .then(this.returnResultStatus)
+    }
+
+    setUserAvatar({ avatar }) {
+        return fetch(`${this._address}/${this._cohortId}/users/me`, {
+            method: 'PATCH',
+            headers: this._headers,
+            body: JSON.stringify({
+                avatar
+            })
+        })
+            .then(this.returnResultStatus)
+    }
+
+
+    addCard({ name, link }) {
+        return fetch(`${this._address}/${this._cohortId}/cards`, {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify({
+                name,
+                link
+            })
+        })
+            .then(this.returnResultStatus)
+    }
+
+    removeCard(cardId) {
+        return fetch(`${this._address}/${this._cohortId}/cards/${cardId}`, {
+            method: 'DELETE',
+            headers: this._headers
+        })
+            .then(this.returnResultStatus)
+    }
+
+    addLike(cardId) {
+        return fetch(`${this._address}/${this._cohortId}/cards/likes/${cardId}`, {
+            method: 'PUT',
+            headers: this._headers
+        })
+            .then(this.returnResultStatus)
+    }
+
+    removeLike(cardId) {
+        return fetch(`${this._address}/${this._cohortId}/cards/likes/${cardId}`, {
+            method: 'DELETE',
+            headers: this._headers
+        })
+            .then(this.returnResultStatus)
+    }
 }
