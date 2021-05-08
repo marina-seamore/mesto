@@ -84,27 +84,26 @@ avatarButton.addEventListener('click', () => {
   editProfileAvatarPopup.open()
 })
 
-function createCards(link, name, cardSelector) {
+function createCards(link, name, cardSelector, likes) {
   const card = new Card(link, name, cardSelector,
     {
       handleCardClick: () => {
         fullScreenPopup.open(link, name)
       }
-    });
+    }, {likes});
 
   return card.createCard();
 }
 
-// const cardList = new Section({
-//   items: initialElements,
-//   renderer: (item) => {
-//     cardList.addItem(createCards(item.link, item.name, profileConfig.elementTemplate))
-//   }
-// }, '.elements'
-// )
-// cardList.renderItems();
-
-Promise.all([api.getInitialCards()])
-  .then((data) => {
-    console.log(data)
-  })
+const cardsData = api.getInitialCards();
+cardsData.then((data) => {
+  const cardsList = new Section({
+    items: data,
+    renderer: (item) => {
+      cardsList.appendItem(createCards(item.link, item.name, profileConfig.elementTemplate, item.likes))
+    }
+  },
+  '.elements')
+  cardsList.renderItems();
+})
+.catch((err) => alert(err))

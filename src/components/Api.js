@@ -1,10 +1,22 @@
-export default class Api{
-    constructor({address, cohortId, token}) {
-        this._address = address;
-        this._cohortId = cohortId;
-        this._token = token;
+export default class Api {
+    constructor(config) {
+        this._address = config.address;
+        this._cohortId = config.cohortId;
+        this._headers = config.headers;
     }
 
-    getInitialCards() {}
+
+    returnResultStatus(res) {
+        if (res.ok) {
+            return res.json();
+        } return Promise.reject(`Не получилось: ${res.status}${res.statusText}`);
+    }
+
+    getInitialCards() {
+        return fetch(`${this._address}/${this._cohortId}/cards`, {
+            headers: this._headers
+        })
+            .then(this.returnResultStatus)
+    }
 
 }
