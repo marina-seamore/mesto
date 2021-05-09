@@ -1,14 +1,16 @@
 export default class Card {
 
-    constructor(image, text, cardSelector, {handleCardClick},{likes}) {
-        this._image = image;
-        this._text = text;
+    constructor(cardSelector, {data, handleCardClick, handleDeleteSubmit}) {
+        this._image = data.link;
+        this._text = data.name;
         this._isLiked = false;
         this._cardSelector = cardSelector;
         this._handleCardClick = handleCardClick;
         this._likeHandler = this._likeHandler.bind(this);
-        this._remove = this._remove.bind(this);
-        this._likes = likes;
+        this.removeCard = this.removeCard.bind(this);
+        this._likes = data.likes;
+        this._handleDeleteSubmit = handleDeleteSubmit;
+        this._cardId = data.id;
     }
 
     _getTemplate () {
@@ -24,14 +26,17 @@ export default class Card {
         this._card.querySelector('.element__likes_button').classList.toggle('element__likes_button_active');
     }
 
-    _remove () {
+    removeCard() {
         this._card.remove();
     }
 
+
     _setEventListeners () {
         this._deleteBtn = this._card.querySelector('.element__delete-button');
-        this._deleteBtn.addEventListener('click', this._remove);
-        this._card.querySelector('.element__likes_button').addEventListener('click', this._likeHandler);
+        this._deleteBtn.addEventListener('click', (event) => {
+            this._handleDeleteSubmit(this.cardId, event.target)
+        });
+        // this._card.querySelector('.element__likes_button').addEventListener('click', this._likeHandler);
         this._card.querySelector('.element__photo').addEventListener('click', () => {
             this._handleCardClick(this._text, this._image)
         });

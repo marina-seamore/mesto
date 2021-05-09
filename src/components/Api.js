@@ -39,11 +39,11 @@ export default class Api {
     }
 
     setUserAvatar({ avatar }) {
-        return fetch(`${this._address}/${this._cohortId}/users/me`, {
+        return fetch(`${this._address}/${this._cohortId}/users/me/avatar`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                avatar
+                avatar: avatar
             })
         })
             .then(this.returnResultStatus)
@@ -62,7 +62,7 @@ export default class Api {
             .then(this.returnResultStatus)
     }
 
-    removeCard(cardId) {
+    deleteCard(cardId) {
         return fetch(`${this._address}/${this._cohortId}/cards/${cardId}`, {
             method: 'DELETE',
             headers: this._headers
@@ -70,19 +70,27 @@ export default class Api {
             .then(this.returnResultStatus)
     }
 
-    addLike(cardId) {
+    handleLike(cardId, like) {
         return fetch(`${this._address}/${this._cohortId}/cards/likes/${cardId}`, {
-            method: 'PUT',
+            method: like? 'PUT' : 'DELETE',
             headers: this._headers
         })
             .then(this.returnResultStatus)
     }
 
-    removeLike(cardId) {
-        return fetch(`${this._address}/${this._cohortId}/cards/likes/${cardId}`, {
-            method: 'DELETE',
-            headers: this._headers
-        })
-            .then(this.returnResultStatus)
-    }
+    // addLike(cardId) {
+    //     return fetch(`${this._address}/${this._cohortId}/cards/likes/${cardId}`, {
+    //         method: 'PUT',
+    //         headers: this._headers
+    //     })
+    //         .then(this.returnResultStatus)
+    // }
+
+    // removeLike(cardId) {
+    //     return fetch(`${this._address}/${this._cohortId}/cards/likes/${cardId}`, {
+    //         method: 'DELETE',
+    //         headers: this._headers
+    //     })
+    //         .then(this.returnResultStatus)
+    // }
 }
