@@ -36,10 +36,5 @@
 @import url(../blocks/full-photo/full-photo.css);
 @import url(../blocks/full-photo/__image/full-photo__image.css);
 @import url(../blocks/full-photo/__place/full-photo__place.css);
-<<<<<<< HEAD
 @import url(../blocks/profile/__avatar/_button/profile__avatar_button.css);
 @import url(../blocks/profile/__avatar/_image/profile__avatar_image.css);
-=======
-@import url(../blocks/profile/__avatar/_type/profile__avatar_type_button.css);
-@import url(../blocks/profile/__avatar/_type/profile__avatar_type_image.css);
->>>>>>> f629eb7f44beabb67b463035b6caab2440efe6a7
