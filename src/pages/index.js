@@ -5,7 +5,6 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
-import initialElements from '../utils/initialElements.js';
 import Api from '../components/Api.js';
 import { validationConfig, profileConfig, popupConfig, apiConfig } from '../utils/constants.js'
 import PopupWithSubmit from '../components/PopupWithSubmit.js';
@@ -14,9 +13,6 @@ const nameField = document.querySelector('.popup__field_type_name');
 const descriptionField = document.querySelector('.popup__field_type_description');
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
-const popupPhoto = document.querySelector('.popup_photo');
-const photo = popupPhoto.querySelector('.popup__field_type_photo');
-const place = popupPhoto.querySelector('.popup__field_type_place');
 const avatarButton = document.querySelector('.profile__avatar_type_button')
 
 const api = new Api(apiConfig);
@@ -29,6 +25,7 @@ const userInfo = new UserInfo({
   profileDescription: profileConfig.profileDescription,
   profileAvatar: profileConfig.profileAvatar
 });
+
 
 const editFormValidator = new FormValidator(validationConfig, editForm);
 editFormValidator.enableValidation();
@@ -89,7 +86,7 @@ const editProfilePopup = new PopupWithForm({
         });
         editProfilePopup.close();
       })
-      .catch((err) => alert(err))
+      .catch((err) => console.log(`editProfile` + err))
   }
 });
 editProfilePopup.setEventListeners();
@@ -116,7 +113,7 @@ const editProfileAvatarPopup = new PopupWithForm({
         });
         editProfileAvatarPopup.close()
       })
-      .catch((err) => alert(err));
+      .catch((err) => console.log(`editProfileAvatar` + err));
   }
 })
 editProfileAvatarPopup.setEventListeners();
@@ -137,7 +134,7 @@ function createCards(cardSelector, data) {
     {
       data: data,
       handleCardClick: () => {
-        fullScreenPopup.open(data.link, data.name)
+        fullScreenPopup.open(data.link, data.name);
       },
       handleDeleteSubmit: () => {
         confirmDeletePopup.setSubmit(() => {
@@ -146,10 +143,12 @@ function createCards(cardSelector, data) {
               card.removeCard()
               confirmDeletePopup.close()
             })
-            .catch((err) => console.log(`delete ` + err))
+            .catch((err) => console.log(`handleDelete ` + err))
         })
         confirmDeletePopup.open()
-      }
+      },
+      handleAddLike: api.addLike(data._id),
+      handleRemoveLike: api.removeLike(data._id)
     });
 
   return card.createCard();
@@ -176,4 +175,4 @@ getUserData.then((data) => {
     userAvatar: data.avatar
   })
 })
-  .catch((err) => alert(err))
+  .catch((err) => console.log(`getUserData` + err))

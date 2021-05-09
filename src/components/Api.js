@@ -70,27 +70,19 @@ export default class Api {
             .then(this.returnResultStatus)
     }
 
-    handleLike(cardId, like) {
+    addLike(cardId) {
         return fetch(`${this._address}/${this._cohortId}/cards/likes/${cardId}`, {
-            method: like? 'PUT' : 'DELETE',
+            method: 'PUT',
             headers: this._headers
         })
             .then(this.returnResultStatus)
     }
 
-    // addLike(cardId) {
-    //     return fetch(`${this._address}/${this._cohortId}/cards/likes/${cardId}`, {
-    //         method: 'PUT',
-    //         headers: this._headers
-    //     })
-    //         .then(this.returnResultStatus)
-    // }
-
-    // removeLike(cardId) {
-    //     return fetch(`${this._address}/${this._cohortId}/cards/likes/${cardId}`, {
-    //         method: 'DELETE',
-    //         headers: this._headers
-    //     })
-    //         .then(this.returnResultStatus)
-    // }
+    removeLike(cardId) {
+        return fetch(`${this._address}/${this._cohortId}/cards/likes/${cardId}`, {
+            method: 'DELETE',
+            headers: this._headers
+        })
+            .then(this.returnResultStatus)
+    }
 }
