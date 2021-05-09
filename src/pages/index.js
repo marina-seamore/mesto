@@ -13,7 +13,7 @@ const nameField = document.querySelector('.popup__field_type_name');
 const descriptionField = document.querySelector('.popup__field_type_description');
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
-const avatarButton = document.querySelector('.profile__avatar_type_button')
+const avatarButton = document.querySelector('.profile__avatar_button')
 
 const api = new Api(apiConfig);
 const editForm = document.querySelector(popupConfig.profilePopup);

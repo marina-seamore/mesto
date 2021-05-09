@@ -1,4 +1,4 @@
-.profile__avatar_type_button {
+.profile__avatar_button {
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -8,11 +8,11 @@
     opacity: 0;
     transition: opacity 0.5s ease;
 }
-.profile__avatar_type_button:hover{
+.profile__avatar_button:hover{
     opacity: 0.8;
 }
 
-.profile__avatar_type_button::after {
+.profile__avatar_button::after {
     content: '';
     position: absolute;
     top: 47px;
@@ -26,6 +26,6 @@
     opacity: 0;
 }
 
-.profile__avatar_type_button:hover::after {
+.profile__avatar_button:hover::after {
     opacity: 1;
 }

@@ -9,7 +9,7 @@ export const validationConfig = {
   export const profileConfig = {
     profileName: '.profile__name',
     profileDescription: '.profile__description',
-    profileAvatar: '.profile__avatar_type_image',
+    profileAvatar: '.profile__avatar_image',
     elementTemplate: '.element-template'
   }
   
