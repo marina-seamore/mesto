@@ -27,6 +27,7 @@ const userInfo = new UserInfo({
 });
 
 
+
 const editFormValidator = new FormValidator(validationConfig, editForm);
 editFormValidator.enableValidation();
 
@@ -92,8 +93,9 @@ const editProfilePopup = new PopupWithForm({
 editProfilePopup.setEventListeners();
 
 editButton.addEventListener('click', () => {
-  nameField.value = userInfo.getUserInfo().userName;
-  descriptionField.value = userInfo.getUserInfo().userDescription;
+  const getUserInfo = userInfo.getUserInfo();
+  nameField.value = getUserInfo.userName;
+  descriptionField.value = getUserInfo.userDescription;
   editProfilePopup.open();
   editFormValidator.resetValidation();
 })
