@@ -48,12 +48,13 @@ export default class Card {
 
     removeCard() {
         this._card.remove();
+        this._card = null;
     }
 
     _setEventListeners() {
         this._deleteBtn = this._card.querySelector('.element__delete-button');
         this._deleteBtn.addEventListener('click', (event) => {
-            this._handleDeleteSubmit(this.cardId, event.target)
+            this._handleDeleteSubmit(this._cardId, event.target)
         });
         this._likeHandler();
         // this._card.querySelector('.element__likes_button').addEventListener('click', this._likeHandler);

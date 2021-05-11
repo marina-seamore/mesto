@@ -138,6 +138,7 @@ function createCards(cardSelector, data) {
       },
       handleDeleteSubmit: () => {
         confirmDeletePopup.setSubmit(() => {
+          confirmDeletePopup.isLoading(true)
           api.deleteCard(data._id)
             .then(() => {
               card.removeCard()
