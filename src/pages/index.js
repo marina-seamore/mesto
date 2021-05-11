@@ -40,7 +40,12 @@ editProfileAvatarFormValidator.enableValidation();
 const fullScreenPopup = new PopupWithImage(popupConfig.fullPhotoPopup);
 fullScreenPopup.setEventListeners();
 
-
+const cardsList = new Section({
+  renderer: (item) => {
+    cardsList.appendItem(createCards(profileConfig.elementTemplate, item))
+  }
+},
+  '.elements')
 
 const addCardPopup = new PopupWithForm({
   popupSelector: popupConfig.addPhotoPopup,
@@ -51,13 +56,6 @@ const addCardPopup = new PopupWithForm({
       link: info.imageLink
     })
       .then((data) => {
-        const cardsList = new Section({
-          items: data,
-          renderer: (item) => {
-            cardsList.appendItem(createCards(profileConfig.elementTemplate, item))
-          }
-        },
-          '.elements')
         cardsList.prependItem(createCards(profileConfig.elementTemplate, data));
         addCardPopup.close();
       })
@@ -151,31 +149,26 @@ function createCards(cardSelector, data) {
         confirmDeletePopup.open()
       },
       handleAddLike: api.addLike(data._id),
-      handleRemoveLike: api.removeLike(data._id)
+      handleRemoveLike: api.removeLike(data._id),
+      currentUserId: userID
     });
 
   return card.createCard();
 }
 
 const cardsData = api.getInitialCards();
-cardsData.then((data) => {
-  const cardsList = new Section({
-    items: data,
-    renderer: (item) => {
-      cardsList.appendItem(createCards(profileConfig.elementTemplate, item))
-    }
-  },
-    '.elements')
-  cardsList.renderItems();
-})
-  .catch((err) => console.log(`cardsData` + err))
-
 const getUserData = api.getUserInfo();
-getUserData.then((data) => {
-  userInfo.setUserInfo({
-    userName: data.name,
-    userDescription: data.about,
-    userAvatar: data.avatar
+let userID = null;
+
+  Promise.all([cardsData, getUserData])
+  .then(([data, user]) => {
+    userInfo.setUserInfo({
+      userName: user.name,
+      userDescription: user.about,
+      userAvatar: user.avatar
+    });
+    userID = user._id;
+
+    cardsList.renderItems(data);
   })
-})
-  .catch((err) => console.log(`getUserData` + err))
+  .catch((err) => console.log(`Sorry couldn't keep the promises, blame the ` +err))
