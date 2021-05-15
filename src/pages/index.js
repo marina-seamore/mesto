@@ -47,6 +47,8 @@ const cardsList = new Section({
 },
   '.elements')
 
+
+
 const addCardPopup = new PopupWithForm({
   popupSelector: popupConfig.addPhotoPopup,
   submit: (info) => {
@@ -98,6 +100,8 @@ editButton.addEventListener('click', () => {
   editFormValidator.resetValidation();
 })
 
+
+
 const editProfileAvatarPopup = new PopupWithForm({
   popupSelector: popupConfig.editProfileAvatarPopup,
   submit: (info) => {
@@ -123,11 +127,15 @@ avatarButton.addEventListener('click', () => {
   editProfileAvatarFormValidator.resetValidation();
 })
 
+
+
 const confirmDeletePopup = new PopupWithSubmit({
   popupSelector: popupConfig.confirmationPopup,
   submit: () => { }
 })
 confirmDeletePopup.setEventListeners();
+
+
 
 function createCards(cardSelector, data) {
   const card = new Card(cardSelector,
@@ -151,7 +159,6 @@ function createCards(cardSelector, data) {
       handleAddLike: () => {
         api.addLike(data._id)
           .then(data => {
-            console.log(card)
             card._isLiked = true;
             card._likes.textContent = data.likes.length;
             card._likeBtn.classList.toggle('element__likes_button_active')
@@ -161,7 +168,6 @@ function createCards(cardSelector, data) {
       handleRemoveLike: () => {
         api.removeLike(data._id)
           .then(data => {
-            console.log(data)
             card._isLiked = false;
             card._likes.textContent = data.likes.length;
             card._likeBtn.classList.toggle('element__likes_button_active')
@@ -173,6 +179,7 @@ function createCards(cardSelector, data) {
 
   return card.createCard();
 }
+
 
 const cardsData = api.getInitialCards();
 const getUserData = api.getUserInfo();
