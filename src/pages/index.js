@@ -148,8 +148,26 @@ function createCards(cardSelector, data) {
         })
         confirmDeletePopup.open()
       },
-      handleAddLike: api.addLike(data._id),
-      handleRemoveLike: api.removeLike(data._id),
+      handleAddLike: () => {
+        api.addLike(data._id)
+          .then(data => {
+            console.log(card)
+            card._isLiked = true;
+            card._likes.textContent = data.likes.length;
+            card._likeBtn.classList.toggle('element__likes_button_active')
+          })
+          .catch((err) => console.log(`handleAddLike ` + err))
+      },
+      handleRemoveLike: () => {
+        api.removeLike(data._id)
+          .then(data => {
+            console.log(data)
+            card._isLiked = false;
+            card._likes.textContent = data.likes.length;
+            card._likeBtn.classList.toggle('element__likes_button_active')
+          })
+          .catch((err) => console.log(`handleRemoveLike ` + err))
+      },
       currentUserId: userID
     });
 
@@ -160,7 +178,7 @@ const cardsData = api.getInitialCards();
 const getUserData = api.getUserInfo();
 let userID = null;
 
-  Promise.all([cardsData, getUserData])
+Promise.all([cardsData, getUserData])
   .then(([data, user]) => {
     userInfo.setUserInfo({
       userName: user.name,
@@ -171,4 +189,4 @@ let userID = null;
 
     cardsList.renderItems(data);
   })
-  .catch((err) => console.log(`Sorry couldn't keep the promises, blame the ` +err))
+  .catch((err) => console.log(`Sorry couldn't keep the promises, blame the ` + err))
