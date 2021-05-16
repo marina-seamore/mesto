@@ -53,18 +53,25 @@ export default class Card {
 
     createCard() {
         this._card = this._getTemplate();
+
         this._cardPhoto = this._card.querySelector('.element__photo');
         this._cardPhoto.src = this._image;
         this._cardPhoto.alt = this._text
+
         this._card.querySelector('.element__name').textContent = this._text;
-        this._card.querySelector('.element__likes_counter').textContent = this._likes.length;
+
+        this._likesCounter = this._card.querySelector('.element__likes_counter')
+        this._likesCounter.textContent = this._likes.length;
+        
         this._likes.forEach(element => {
             if(element._id === this._currentUserId) {
                 this._card.querySelector('.element__likes_button').classList.add('element__likes_button_active');
                 this._isLiked = true
             }
         });
+
         this._setEventListeners();
+
         return this._card;
     }
 }
